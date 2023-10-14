@@ -13,11 +13,11 @@
   </s:properties>
 <style>
 svg {
-  stroke:#000;
+  stroke:#eef;
   fill:none;
 }
 text {
-  fill:#000;
+  fill:#eef;
   stroke:none;
   font-size:10px;
   font-weight: bold;
@@ -30,11 +30,11 @@ text {
   text-anchor: end;
 }
 .splitjoinBody {
+  fill:#eef;
+}
+/* .noninv {
   fill:#000;
-}
-.noninv {
-  fill:#EEF;
-}
+} */
 </style>
   <!-- and -->
   <g s:type="AND2" transform="translate(150,50)" s:width="30" s:height="25">
