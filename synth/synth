@@ -262,6 +262,7 @@ if __name__ == "__main__":
         print("WARN: Could not prctl()")
 
     isMinispec = args.file.endswith(".ms")
+    isVerilog = args.file.endswith(".v")
     isModule = False
     if isMinispec:
         # Minispec: just use msc output
@@ -269,6 +270,10 @@ if __name__ == "__main__":
         print("Compiling %s %s from file %s" % ("module" if isModule else "function", args.target, args.file))
         run("(cd %s && msc -o v,bsv --bscOpts ' -opt-undetermined-vals -unspecified-to X ' '%s' '%s')" % (args.synthdir, os.path.abspath(args.file), args.target))
         modName = "mk" + args.target.strip() if "#" not in args.target else "mkTopLevel___"
+    elif isVerilog:
+        isModule = True  # let's just assume so
+        modName = args.target.strip()  # probably flawed
+        print(f"Synthesizing {args.target} from file {args.file} as a Verilog module.")
     else:
         # Bluespec
         input = readFile(args.file, "input file")
@@ -288,6 +293,7 @@ if __name__ == "__main__":
                 sys.exit(1)
             (_, _, _) = targetFunc
         modName = args.target.strip() if isModule else "mkSynth"
+    run(f'find . -maxdepth 1 \( -name "*.v" -o -name "*.use" \) -exec cp {{}} {args.synthdir} \;')  # need both the Verilog files and the modules they use
 
     stdcellFile = os.path.join(scriptDir, args.lib + ".lib")
     if not os.path.exists(stdcellFile):
