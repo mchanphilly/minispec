@@ -380,7 +380,7 @@ if __name__ == "__main__":
     print("Synthesizing circuit with std cell library = %s, O%d, target delay = %d ps" % (args.lib, args.optLevel, args.delay))
 
     # Buffer insertion is not delay-aware and finicky, so synthesize the circuit using a few settings and pick the best
-    bufferCfgs = [("nb", ""), ("b", "buffer"), ("b50", "buffer -N 50")]
+    bufferCfgs = [("b", "buffer"), ("b50", "buffer -N 50")]  # ("nb", ""), Removed because they were causing real finnicky results
     yosysOutFile = lambda outDir: os.path.join(outDir, "yosys.out")
 
     # We run all yosys instances in parallel, as they take little memory
