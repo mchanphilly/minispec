@@ -1,13 +1,13 @@
 Minispec
 ========
 
-I created this fork to make the `synth` tool more suitable for projects I'm working on.
+I created this fork to tweak the `synth` tool to be more suitable for projects I'm working on.
 See my [blog post](https://www.martinchan.org/blog/tweaking-synth/) for more details.
 
 ## Changes from fork
 - Remove the no-buffer option from `bufferCfgs` to work around a bug where some designs result
   in extremely large outputs compared to the other two options.
-- [TODO] Expand the `synth` command to accept Verilog `.v` files directly, alongside
+- Expand the `synth` command to accept Verilog `.v` files directly, alongside
   the existing support for Minispec `.ms` and Bluespec `.bsv` files.
 
 ## (Original content)
